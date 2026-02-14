@@ -1,90 +1,126 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>بطاقة عيد الحب التفاعلية</title>
-  
-  <style>
-    @import url(https://fonts.googleapis.com/css?family=Poiret+One);
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عيد حب سعيد 2026</title>
+    <style>
+        /* إعدادات الخلفية */
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle, #2b0000 0%, #000000 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden; /* لمنع ظهور أشرطة التمرير بسبب القلوب المتساقطة */
+        }
 
-    /* تنسيق الخلفية والجسم */
-    body {
-      background-color: #ddd;
-      font-family: 'Poiret One', 'Segoe UI Light', cursive;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      overflow: hidden;
-    }
+        /* حاوية القلب الرئيسي */
+        .container {
+            position: relative;
+            text-align: center;
+            z-index: 10; /* لضمان بقاء الرسالة فوق القلوب المتساقطة */
+        }
 
-    /* حاوية البطاقة */
-    #card {
-      position: relative;
-      width: 460px;
-      height: 260px;
-      cursor: pointer;
-    }
+        .heart-shape {
+            position: relative;
+            width: 100px;
+            height: 90px;
+            background-color: #ff0040;
+            margin: 0 auto;
+            transform: rotate(-45deg);
+            animation: beat 0.8s infinite;
+            box-shadow: 0 0 40px #ff0040;
+            cursor: pointer;
+        }
 
-    /* تنسيق القلوب المشترك */
-    #card .heart {
-      width: 260px;
-      height: 260px;
-      float: left;
-      position: absolute;
-    }
+        .heart-shape:before,
+        .heart-shape:after {
+            content: "";
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: #ff0040;
+            border-radius: 50%;
+        }
 
-    #card .heart #circle {
-      height: 130px;
-      width: 130px;
-      border-radius: 50%;
-      background-color: #D32F2F;
-    }
+        .heart-shape:before { top: -50px; left: 0; }
+        .heart-shape:after { left: 50px; top: 0; }
 
-    #card .heart #rec {
-      margin-top: -60px;
-      width: 130px;
-      height: 130px;
-      background-color: #D32F2F;
-      border-radius: 35% 0 0 0;
-    }
+        @keyframes beat {
+            0% { transform: scale(1) rotate(-45deg); }
+            50% { transform: scale(1.2) rotate(-45deg); }
+            100% { transform: scale(1) rotate(-45deg); }
+        }
 
-    /* تدوير النصف الثاني لتشكيل القلب */
-    #card .heart #half2 {
-      transform: rotate(-90deg);
-      margin-top: -330px;
-      margin-left: -200px;
-    }
+        .message {
+            margin-top: 80px;
+            color: white;
+            opacity: 0;
+            transition: opacity 1s ease;
+            text-shadow: 0 0 10px #ff0040;
+        }
 
-    /* تنسيق الرسالة المخفية */
-    #card #message {
-      position: absolute;
-      left: 130px;
-      width: 200px;
-      height: 200px;
-      background-color: #333;
-      border-radius: 35% 0 35% 0;
-      text-align: center;
-      z-index: 1;
-    }
+        .container:hover .message { opacity: 1; }
 
-    #card #message h2 {
-      font-size: 20px;
-      color: #fff;
-      margin-top: 60px;
-      padding: 0 10px;
-    }
+        /* تنسيق القلوب المتساقطة */
+        .falling-heart {
+            position: absolute;
+            color: #ff4d79;
+            font-size: 20px;
+            user-select: none;
+            pointer-events: none;
+            animation: fall linear forwards;
+        }
 
-    /* إعدادات القلب الأول والثاني */
-    #card #heart1 {
-      z-index: 3;
-      transform: rotate(180deg);
-      animation: closeLeft 2s ease-in-out forwards;
-    }
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
 
-    #card #heart2 {
-      z-index: 2;
-      margin-left: 200px;
-      animation
+    <div class="container">
+        <div class="heart-shape"></div>
+        <div class="message">
+            <h1>عيد حب سعيد! ❤️</h1>
+            <p>أنت الشخص المفضل لدي في عام 2026.</p>
+        </div>
+    </div>
+
+    <script>
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('falling-heart');
+            
+            // اختيار شكل عشوائي للقلب
+            const hearts = ['❤️', '💖', '💘', '💕', '💗'];
+            heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
+            
+            // تحديد مكان البدء العشوائي (أفقياً)
+            heart.style.left = Math.random() * 100 + "vw";
+            
+            // تحديد مدة السقوط العشوائية (بين 3 إلى 7 ثوانٍ)
+            const duration = Math.random() * 4 + 3;
+            heart.style.animationDuration = duration + "s";
+            
+            // حجم عشوائي
+            heart.style.fontSize = Math.random() * 20 + 10 + "px";
+            
+            document.body.appendChild(heart);
+
+            // إزالة القلب بعد انتهاء الحركة لتوفير الذاكرة
+            setTimeout(() => {
+                heart.remove();
+            }, duration * 1000);
+        }
+
+        // إنشاء قلب جديد كل 300 مللي ثانية
+        setInterval(createHeart, 300);
+    </script>
+</body>
+</html>
