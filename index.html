@@ -1,45 +1,90 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <title>Valentines Day card | @coding.stella</title>
-  <link rel="stylesheet" href="./style.css">
-</head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>بطاقة عيد الحب التفاعلية</title>
+  
+  <style>
+    @import url(https://fonts.googleapis.com/css?family=Poiret+One);
 
-<body>
+    /* تنسيق الخلفية والجسم */
+    body {
+      background-color: #ddd;
+      font-family: 'Poiret One', 'Segoe UI Light', cursive;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+    }
 
-  <div id="card">
-    <center>
-      <h1>Valentines Day Card </h1>
-    </center>
-    
-    <div class="heart" id="heart1">
-      <div id="half1">
-        <div id="circle"></div>
-        <div id="rec"></div>
-      </div>
-      <div id="half2">
-        <div id="circle"></div>
-        <div id="rec"></div>
-      </div>
-    </div>
+    /* حاوية البطاقة */
+    #card {
+      position: relative;
+      width: 460px;
+      height: 260px;
+      cursor: pointer;
+    }
 
-    <div id="message">
-      <h2>Happy Valentines Day Stella</h2>
-    </div>
+    /* تنسيق القلوب المشترك */
+    #card .heart {
+      width: 260px;
+      height: 260px;
+      float: left;
+      position: absolute;
+    }
 
-    <div class="heart" id="heart2">
-      <div id="half1">
-        <div id="circle"></div>
-        <div id="rec"></div>
-      </div>
-      <div id="half2">
-        <div id="circle"></div>
-        <div id="rec"></div>
-      </div>
-    </div>
-  </div>
+    #card .heart #circle {
+      height: 130px;
+      width: 130px;
+      border-radius: 50%;
+      background-color: #D32F2F;
+    }
 
-</body>
-</html>
+    #card .heart #rec {
+      margin-top: -60px;
+      width: 130px;
+      height: 130px;
+      background-color: #D32F2F;
+      border-radius: 35% 0 0 0;
+    }
+
+    /* تدوير النصف الثاني لتشكيل القلب */
+    #card .heart #half2 {
+      transform: rotate(-90deg);
+      margin-top: -330px;
+      margin-left: -200px;
+    }
+
+    /* تنسيق الرسالة المخفية */
+    #card #message {
+      position: absolute;
+      left: 130px;
+      width: 200px;
+      height: 200px;
+      background-color: #333;
+      border-radius: 35% 0 35% 0;
+      text-align: center;
+      z-index: 1;
+    }
+
+    #card #message h2 {
+      font-size: 20px;
+      color: #fff;
+      margin-top: 60px;
+      padding: 0 10px;
+    }
+
+    /* إعدادات القلب الأول والثاني */
+    #card #heart1 {
+      z-index: 3;
+      transform: rotate(180deg);
+      animation: closeLeft 2s ease-in-out forwards;
+    }
+
+    #card #heart2 {
+      z-index: 2;
+      margin-left: 200px;
+      animation
